@@ -6,10 +6,17 @@ import sys
 import time
 import tweepy
 
-#今日が祝日かどうか判定する
-holiday = jpholiday.is_holiday(datetime.date.today())
+# 今日が祝日かどうか判定する
+now = datetime.date.today()
+holiday = jpholiday.is_holiday(now)
 if holiday == True:
     sys.exit()
+
+# カスタム休日
+target_days = ['01-01', '01-02', '01-03', '12-30', '12-31']
+for target_day in target_days:
+    if now.strftime('%m-%d') == target_day:
+        sys.exit()
 
 # jsonファイルを読み取る
 with open('data.json') as f:
