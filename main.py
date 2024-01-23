@@ -104,8 +104,8 @@ try:
 
     SP_num = 0
     AC_num = 0
-    # 1分ごとに実行、100分経過で終了
-    for i in range(1, 101):
+    # 1分ごとに実行、210分経過で終了
+    for i in range(1, 211):
         # 引数 1:ファンドコード 2:最高値データ 3:ファンド名 4:ツイートハッシュタグ
         if SP_num == 0:
             SP_num = fundAPI('253266', 'SP_Max', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)\n\n', '#投資 #NISA #SP500') # SP500
