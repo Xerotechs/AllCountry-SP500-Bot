@@ -1,6 +1,5 @@
 # オルカンSP500 Bot
 
-
 <a href="https://twitter.com/AllCoun_SP500">
     <img src="https://img.shields.io/badge/-@AllCoun_SP500-000000.svg?logo=x&style=flat-square">
 </a>
@@ -18,7 +17,7 @@ https://twitter.com/AllCoun_SP500
 - 基準価額最高値更新通知 (更新した場合のみ)
 - 基準価格
 - 基準日
-- 決算日通知 (決算日前日(土日を考慮する)と決算日当日のみ)
+- 決算日通知 (決算日当日のみ)
 - ファンドURL
 - ハッシュタグ
 
