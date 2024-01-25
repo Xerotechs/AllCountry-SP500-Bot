@@ -1,4 +1,9 @@
-# [オルカンSP500 Bot](https://twitter.com/AllCoun_SP500)
+# オルカンSP500 Bot
+
+
+<a href="https://twitter.com/AllCoun_SP500">
+    <img src="https://img.shields.io/badge/-@AllCoun_SP500-000000.svg?logo=x&style=flat-square">
+</a>
 
 ## URL
 X(Twitter)のアカウント<br>

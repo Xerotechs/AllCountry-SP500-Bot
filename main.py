@@ -48,7 +48,7 @@ try:
         max_date = jsonfile[max]
         # 更新されていたら記載
         if max_date != nav_max_dt:
-            nav_max = f'\U0001F451基準価額最高値更新(前回更新日:{max_date[:4]}/{max_date[4:6]}/{max_date[6:]})\n'
+            nav_max = f'\U0001F451最高値更新(前回:{max_date[:4]}/{max_date[4:6]}/{max_date[6:]})\n'
             jsonfile[max] = nav_max_dt
             with open('data.json', 'w') as f:
                 json.dump(jsonfile, f, indent = 2)
@@ -76,14 +76,12 @@ try:
 
         # 決算日(4月25日)
         today = datetime.date.today() 
-        if today.month == 4 and today.day == 23 and today.weekday() == 4: # 23日が金曜日
-            closing = '\U0001F4C54/26(月)は決算日です\n\n'
-        elif today.month == 4 and today.day == 24 and today.weekday() == 4: # 24日が金曜日
-            closing = '\U0001F4C54/27(月)は決算日です\n\n'
-        elif today.month == 4 and today.day == 24: # 24日金曜日以外
-            closing = '\U0001F4C5明日は決算日です\n\n'
-        elif today.month == 4 and today.day == 25: # 25日
-            closing = '\U0001F4B0本日は決算日です\n\n'
+        if today.month == 4 and today.day == 25: # 25日
+            closing = '\U0001F4C5本日は決算日です\n\n'
+        elif today.month == 4 and today.day == 26 and today.weekday() == 0: # 26日
+            closing = '\U0001F4C5本日は決算日です\n\n'
+        elif today.month == 4 and today.day == 27 and today.weekday() == 0: # 27日
+            closing = '\U0001F4C5本日は決算日です\n\n'
         else: # 通常時
             closing = ''
 
