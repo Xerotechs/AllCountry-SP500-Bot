@@ -24,15 +24,9 @@ def fundAPI(cd, name):
     # 騰落率
     percent = fund_response['datasets'][0]['percentage_change_1m']
     percent = f'{float(percent):.02f}'
-    # 最高騰落率
-    percent_max = fund_response['datasets'][0]['percentage_change_max_1m']
-    percent_max = f'{float(percent_max):.02f}'
-    # 最小騰落率
-    percent_min = fund_response['datasets'][0]['percentage_change_min_1m']
-    percent_min = f'{float(percent_min):.02f}'
 
     # Tweet文作成
-    text = f'{name}\n\U0001F4B9騰落率:{percent}%\n\U0001F4C8最高騰落率:{percent_max}%\n\U0001F4C9最小騰落率:{percent_min}%\n'
+    text = f'{name}\n\U0001F4B9騰落率:{percent}%\n'
     
     return text
 
