@@ -36,11 +36,7 @@ def fundAPI(cd, name):
     url = f'https://emaxis.jp/fund/{cd}.html\n'
     
     # Tweet文作成
-<<<<<<< HEAD
     text = f'{name}\n{percentage}{url}'
-=======
-    text = f'{name}\n\U0001F4B9騰落率:{percent}%\n'
->>>>>>> 95edd62f311b1754cd5fe33f0f64ab5e86021334
     
     return text
 
