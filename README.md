@@ -28,8 +28,7 @@ https://twitter.com/AllCoun_SP500
 両ファンドの
 - ファンド名
 - 騰落率
-- 最高騰落率
-- 最小騰落率
+- ファンドURL
 - ハッシュタグ
 
 ### 年末
@@ -41,4 +40,5 @@ https://twitter.com/AllCoun_SP500
 - 騰落率
 - リスク
 - シャープレシオ
+- ファンドURL
 - ハッシュタグ
