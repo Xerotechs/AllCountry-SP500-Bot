@@ -24,15 +24,19 @@ def fundAPI(cd, name):
     # 騰落率
     percent = fund_response['datasets'][0]['percentage_change_1m']
     percent = f'{float(percent):.02f}'
-    # 最高騰落率
-    percent_max = fund_response['datasets'][0]['percentage_change_max_1m']
-    percent_max = f'{float(percent_max):.02f}'
-    # 最小騰落率
-    percent_min = fund_response['datasets'][0]['percentage_change_min_1m']
-    percent_min = f'{float(percent_min):.02f}'
 
+    if '-' not in percent:
+        comparison = '\U0001F4C8騰落率:'
+        percent = f'+{percent}'
+    else:
+        comparison = '\U0001F4C9騰落率:'
+    percentage = f'{comparison}{percent}%\n'
+
+    # URL
+    url = f'https://emaxis.jp/fund/{cd}.html\n'
+    
     # Tweet文作成
-    text = f'{name}\n\U0001F4B9騰落率:{percent}%\n\U0001F4C8最高騰落率:{percent_max}%\n\U0001F4C9最小騰落率:{percent_min}%\n'
+    text = f'{name}\n{percentage}{url}'
     
     return text
 
@@ -46,7 +50,7 @@ month = today.month
 AC = fundAPI('253425', '\U0001F30FeMAXIS Slim 全世界株式(オールカントリー)') #オルカン
 SP = fundAPI('253266', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)') #SP500
 
-tweet = f'{year}年{month}月の騰落率(1ヶ月)\n\n{AC}\n{SP}\n#投資 #NISA #オルカン #SP500'
+tweet = f'\U0001F4B9{year}年{month}月の結果(1ヶ月)\n\n{AC}\n{SP}\n#投資 #NISA #オルカン #SP500'
 print(tweet)
 #client.create_tweet(text = tweet)
 
@@ -64,6 +68,13 @@ def yearAPI(cd, name):
     percent = fund_response['datasets'][0]['percentage_change_1y']
     percent = f'{float(percent):.02f}'
 
+    if '-' not in percent:
+        comparison = '\U0001F4C8騰落率:'
+        percent = f'+{percent}'
+    else:
+        comparison = '\U0001F4C9騰落率:'
+    percentage = f'{comparison}{percent}%\n'
+
     # リスク
     risk = fund_response['datasets'][0]['risk_1y']
     risk = f'{float(risk):.02f}'
@@ -72,14 +83,17 @@ def yearAPI(cd, name):
     sharpratio = fund_response['datasets'][0]['risk_return_1y']
     sharpratio = f'{float(sharpratio):.02f}'
 
+    # URL
+    url = f'https://emaxis.jp/fund/{cd}.html\n'
+
     # Tweet文作成
-    text = f'{name}\n\U0001F4B9騰落率:{percent}%\n\u26A0リスク:{risk}%\n\U0001F4CAシャープレシオ:{sharpratio}\n'
+    text = f'{name}\n{percentage}\u26A0リスク:{risk}%\n\U0001F4CAシャープレシオ:{sharpratio}\n{url}'
     
     return text
 
 AC = yearAPI('253425', '\U0001F30FeMAXIS Slim 全世界株式(オールカントリー)') #オルカン
 SP = yearAPI('253266', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)') #SP500
 
-tweet = f'{year}年の結果\n\n{AC}\n{SP}\n(リスク、シャープレシオは年換算です)\n#投資 #NISA #オルカン #SP500'
+tweet = f'\U0001F4B9{year}年の結果\n\n{AC}\n{SP}\n#投資 #NISA #オルカン #SP500'
 print(tweet)
 #client.create_tweet(text = tweet)
