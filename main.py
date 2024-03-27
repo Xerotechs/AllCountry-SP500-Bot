@@ -12,7 +12,7 @@ holiday = jpholiday.is_holiday(now)
 if holiday == True:
     sys.exit()
 
-# カスタム休日
+# カスタム休日(年末年始は基準価格の更新はありません)
 target_days = ['01-01', '01-02', '01-03', '12-30', '12-31']
 for target_day in target_days:
     if now.strftime('%m-%d') == target_day:
