@@ -96,4 +96,4 @@ SP = yearAPI('253266', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)') #
 
 tweet = f'\U0001F4B9{year}年の結果\n\n{AC}\n{SP}\n#投資 #NISA #オルカン #SP500'
 print(tweet)
-#client.create_tweet(text = tweet)
+#client.create_tweet(text = tweet) # 動作時はコメントを外す
