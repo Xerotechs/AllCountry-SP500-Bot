@@ -1,44 +1,42 @@
 # オルカンSP500 Bot
+![Allcountry](./image/Allcountry.png)
 
+
+三菱UFJアセットマネジメント社 が運用する eMAXIS Slim 全世界株式(オールカントリー) とeMAXIS Slim 米国株式(S&P500) の値動きを X に投稿するBotです。
+
+[eMAXIS Slim 全世界株式(オールカントリー)](https://emaxis.jp/fund/253425.html)
+
+[eMAXIS Slim 米国株式(S&P500)](https://emaxis.jp/fund/253266.html)
+
+
+## X アカウント
 <a href="https://twitter.com/AllCoun_SP500">
     <img src="https://img.shields.io/badge/-@AllCoun_SP500-000000.svg?logo=x&style=flat-square">
 </a>
 
-## URL
-X(Twitter)のアカウント<br>
-https://twitter.com/AllCoun_SP500
+https://x.com/AllCoun_SP500
+
+## 仕様技術
+- Raspberry Pi Zero 2 W
+    - cron
+- Python 3.12.1
+- JSON
+
+![RaspberryPi](./image/RaspberryPi.jpg)
+RaspberryPiでPythonファイルを定期実行させています。
 
 ## 機能
-### 平日
-[eMAXIS Slim 全世界株式(オールカントリー)](https://emaxis.jp/fund/253425.html)と[eMAXIS Slim 米国株式(S&P500)](https://emaxis.jp/fund/253266.html)の値動きを[X(Twitter)](https://twitter.com/AllCoun_SP500)に投稿する。
 
-#### 投稿内容
-- ファンド名
-- 基準価額最高値更新通知 (更新した場合のみ)
-- 基準価格
-- 基準日
-- 決算日通知 (決算日当日のみ)
-- ファンドURL
-- ハッシュタグ
+| 全世界株式 | 米国株式 |
+| ---- | ---- |
+| ![Allcountry](./image/allcountry.png) | ![SP500](./image/SP500.png) |
+| 全世界株式の値動きの投稿します。 | 米国株式の値動きの投稿します。 |
 
-### 月末
-[eMAXIS Slim 全世界株式(オールカントリー)](https://emaxis.jp/fund/253425.html)と[eMAXIS Slim 米国株式(S&P500)](https://emaxis.jp/fund/253266.html)の1ヶ月の騰落率を[X(Twitter)](https://twitter.com/AllCoun_SP500)に投稿する。
+- 前日比がプラスの場合は赤丸、マイナスの場合は青丸の絵文字を表示します。
+- 最高値更新時には前回更新日を表示させます。
 
-#### 投稿内容
-両ファンドの
-- ファンド名
-- 騰落率
-- ファンドURL
-- ハッシュタグ
 
-### 年末
-[eMAXIS Slim 全世界株式(オールカントリー)](https://emaxis.jp/fund/253425.html)と[eMAXIS Slim 米国株式(S&P500)](https://emaxis.jp/fund/253266.html)の1年のまとめを[X(Twitter)](https://twitter.com/AllCoun_SP500)に投稿する。
-
-#### 投稿内容
-両ファンドの
-- ファンド名
-- 騰落率
-- リスク
-- シャープレシオ
-- ファンドURL
-- ハッシュタグ
+| 月の結果 |
+| ---- |
+| ![month](./image/month.png) |
+| 月末に両ファンドの1ヶ月の騰落率を投稿します。 |
