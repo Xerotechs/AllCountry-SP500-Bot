@@ -29,7 +29,7 @@ RaspberryPiでPythonファイルを定期実行させています。
 
 | 全世界株式 | 米国株式 |
 | ---- | ---- |
-| ![Allcountry](./image/allcountry.png) | ![SP500](./image/SP500.png) |
+| ![Allcountry](./image/Allcountry.png) | ![SP500](./image/SP500.png) |
 | 全世界株式の値動きの投稿します。 | 米国株式の値動きの投稿します。 |
 
 - 前日比がプラスの場合は赤丸、マイナスの場合は青丸の絵文字を表示します。
