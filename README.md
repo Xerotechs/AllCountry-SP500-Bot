@@ -1,5 +1,5 @@
 # オルカンSP500 Bot
-![Allcountry](./image/Allcountry.png)
+![alt text](./image/header.png)
 
 
 三菱UFJアセットマネジメント社 が運用する eMAXIS Slim 全世界株式(オールカントリー) とeMAXIS Slim 米国株式(S&P500) の値動きを X に投稿するBotです。
