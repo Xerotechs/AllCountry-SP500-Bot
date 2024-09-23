@@ -39,7 +39,7 @@ for _ in range(5): # エラー時最大5回リトライ
             fund_response = requests.get(url_fund, headers = {'Content-Type':'application/json'}).json()
 
             # 騰落率
-            percent_data = fund_response['datasets'][0]['percentage_change']
+            percent_data = fund_response['datasets2'][0]['percentage_change']
             # 前日と騰落率が同じならdef抜け
             if jsonfile[cd] == percent_data:
                 return 0
@@ -50,9 +50,6 @@ for _ in range(5): # エラー時最大5回リトライ
             # 更新されていたら記載
             if max_date != nav_max_dt:
                 nav_max = f'\U0001F451最高値更新(前回:{max_date[:4]}/{max_date[4:6]}/{max_date[6:]})\n'
-                jsonfile[max] = nav_max_dt
-                with open('data.json', 'w') as f:
-                    json.dump(jsonfile, f, indent = 2)
             else:
                 nav_max = ''
             
@@ -91,25 +88,20 @@ for _ in range(5): # エラー時最大5回リトライ
 
             # Tweet文作成
             tweet = f'{name}{nav_max}{nav}{change}{base}{closing}{url}{tag}'
-            
-            # jsonファイルを書き込む
-            jsonfile[cd] = percent_data
-            with open('data.json', 'w') as f:
-                json.dump(jsonfile, f, indent = 2)
 
             print(tweet)
             #client.create_tweet(text = tweet) # 動作時はコメントを外す
-            return 1
+            return 1, nav_max_dt, percent_data # 動作カウント、最高値日、騰落率を返す
 
-        SP_num = 0
-        AC_num = 0
+        SP_num, AC_num = 0, 0 # カウントの初期化
         # 1分ごとに実行、360分経過で終了
         for i in range(1, 361):
+            # 動作カウント、最高値日、騰落率を代入する
             # 引数 1:ファンドコード 2:最高値データ 3:ファンド名 4:ツイートハッシュタグ
             if SP_num == 0:
-                SP_num = fundAPI('253266', 'SP_Max', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)\n\n', '#投資 #NISA #SP500') # SP500
+                SP_num, SP_nav_max_dt, SP_percent_data = fundAPI('253266', 'SP_Max', '\U0001F1FA\U0001F1F8eMAXIS Slim 米国株式(S&P500)\n\n', '#投資 #NISA #SP500') # SP500
             if AC_num == 0:
-                AC_num = fundAPI('253425', 'AC_Max', '\U0001F30FeMAXIS Slim 全世界株式(オールカントリー)\n\n', '#投資 #NISA #オルカン') # オルカン
+                AC_num, AC_nav_max_dt, AC_percent_data = fundAPI('253425', 'AC_Max', '\U0001F30FeMAXIS Slim 全世界株式(オールカントリー)\n\n', '#投資 #NISA #オルカン') # オルカン
             
             # 両方のファンドがツイートすると終了
             if SP_num + AC_num == 2:
@@ -117,13 +109,31 @@ for _ in range(5): # エラー時最大5回リトライ
             # 1分間待機
             time.sleep(60)
 
+        # jsonファイルに書き込む
+        SP_num, AC_num = 0, 0 # カウントの初期化
+        def jsonwrite(percent_data, nav_max_dt, cd, max):
+            jsonfile[cd] = percent_data
+            jsonfile[max] = nav_max_dt
+            with open('data.json', 'w') as f:
+                json.dump(jsonfile, f, indent = 2)
+            return 1
+        
+        for i in range(100):
+            if SP_num == 0:
+                SP_num = jsonwrite(SP_percent_data, SP_nav_max_dt, '253266', 'SP_Max')
+            if AC_num == 0:
+                AC_num = jsonwrite(AC_percent_data, AC_nav_max_dt, '253425', 'AC_Max')
+
+            if SP_num + AC_num == 2:
+                break
+
         break # エラー無しでループ抜け
 
     # エラー時
     except Exception as e:
         import traceback
         error_code = traceback.extract_tb(e.__traceback__)
-        print("error")
+        # print("error")
         time.sleep(1) # 間隔をあけてリトライする
 
 else: # リトライ回数の上限を超えたらエラーコードをjsonファイルに保存
